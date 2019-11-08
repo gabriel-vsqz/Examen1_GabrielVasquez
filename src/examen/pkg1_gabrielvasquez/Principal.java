@@ -3,6 +3,7 @@ package examen.pkg1_gabrielvasquez;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,9 +13,15 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
+        
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_Libros.getModel();
+        modelo.addElement(new Libro("The Maze Runner", "Un grupo de jovenes en un laberinto", 5, 3, "Acción", 600, "Primera", "James Dashner", 2012));
+        modelo.addElement(new Libro("The Scorch Trials", "Un grupo de jovenes en un desierto", 5, 2, "Acción", 700, "Primera", "James Dashner", 2014));
+        modelo.addElement(new Libro("The Death Cure", "Un grupo de jovenes en busca de una cura", 3, 1, "Acción", 650, "Segunda", "James Dashner", 2015));
+        modelo.addElement(new Libro("The Eye of Minds", "La realidad no es lo que parece", 5, 3, "Acción", 600, "Primera", "James Dashner", 2016));
+        modelo.addElement(new Libro("The Game of Lives", "La conclusión de la saga The Mortality Doctrine", 5, 2, "Acción", 800, "Tercera", "James Dashner", 2017));
+        
         setLocationRelativeTo(null);
-        
-        
     }
     
     @SuppressWarnings("unchecked")
@@ -68,8 +75,12 @@ public class Principal extends javax.swing.JFrame {
         tf_publish = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        cb_libros = new javax.swing.JComboBox<>();
-        jPanel7 = new javax.swing.JPanel();
+        cb_Libros = new javax.swing.JComboBox<>();
+        jLabel22 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        table_info = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Biblioteca Virtual");
@@ -381,37 +392,91 @@ public class Principal extends javax.swing.JFrame {
 
         tb_principal.addTab("Crear Libro", jPanel3);
 
+        cb_Libros.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_LibrosItemStateChanged(evt);
+            }
+        });
+
+        jLabel22.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        jLabel22.setText("Escoja el libro del cuál desea ver la información");
+
+        table_info.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Título", "Descripción", "Puntaje", "Copias Disp.", "Género", "Valor", "Edición", "Autor", "Año Publicación"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        table_info.setRowHeight(70);
+        jScrollPane3.setViewportView(table_info);
+
+        jButton3.setText("Limpiar Tabla");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
+        jButton4.setText("Modificar Libro");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(cb_libros, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(676, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(jLabel22)
+                        .addGap(18, 18, 18)
+                        .addComponent(cb_Libros, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(157, 157, 157)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(cb_libros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(348, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_Libros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
 
         tb_principal.addTab("Ver Libro", jPanel5);
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
-        );
-
-        tb_principal.addTab("Historial", jPanel7);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -433,27 +498,53 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //BOTON DE LOGIN
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        /*
-        Usuarios:
-            leonardo - 12345
-            diego - 12345
-            gabriel - 12345
-            unitec - 12345
-            progra2 - 12345
-        */
-        if ( ( username.getText().equals("leonardo") || username.getText().equals("diego") || username.getText().equals("gabriel") || username.getText().equals("unitec") || 
-                username.getText().equals("progra2") ) && password.getText().equals("12345")) {
-            //Principal p = new Principal("Ingresaste");
-            dispose();
-            //p.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "El usuario que ha ingresado no existe o su contraseña es incorrecta");
-            
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        table_info.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
+            },
+            new String [] {
+                "Título", "Descripción", "Puntaje", "Copias Disp.", "Género", "Valor", "Edición", "Autor", "Año Publicación"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void cb_LibrosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_LibrosItemStateChanged
+        if (evt.getStateChange() == 2) {
+            Libro book = (Libro) cb_Libros.getSelectedItem();
+            Object[] newrow = {
+                book.getTitle(),
+                book.getDescripción(),
+                book.getPuntaje(),
+                book.getCopias(),
+                book.getGenero(),
+                book.getValor(),
+                book.getEdicion(),
+                book.getAutor(),
+                book.getAño()
+            };
+            DefaultTableModel modelo = (DefaultTableModel) table_info.getModel();
+            modelo.addRow(newrow);
+            table_info.setModel(modelo);
+        }
+    }//GEN-LAST:event_cb_LibrosItemStateChanged
+
+    //BOTON DE AGREGAR LIBROS
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         String titulo, desc, edicion, genero, autor;
         int puntos, copias, año;
@@ -461,26 +552,129 @@ public class Principal extends javax.swing.JFrame {
         try {
             titulo = tf_titulo.getText();
             desc = ta_descripcion.getText();
-            puntos = js_puntaje.getComponentCount();
-            copias = js_copias.getComponentCount();
-            genero = tf_genre.getText();
+            puntos = (Integer)js_puntaje.getValue();
+            copias = (Integer)js_copias.getValue();
+            genero = (String)cb_genre.getSelectedItem();
             precio = Double.parseDouble(tf_valor.getText());
             edicion = tf_edicion.getText();
             autor = tf_author.getText();
             año = Integer.parseInt(tf_publish.getText());
-            
+
             Libro book = new Libro(titulo, desc, puntos, copias, genero, precio, edicion, autor, año);
             libros.add(book);
-            
-            DefaultComboBoxModel dc = (DefaultComboBoxModel) cb_libros.getModel();
-            dc.addElement(book);
-            cb_libros.setModel(dc);
-            
+
+            DefaultComboBoxModel dc = (DefaultComboBoxModel) cb_Libros.getModel();
+            dc.addElement(book.getTitle());
+            cb_Libros.setModel(dc);
+
+            JOptionPane.showMessageDialog(this, "El libro fue agregado exitosamente");
+
         } catch(Exception e) {
-            
+            JOptionPane.showMessageDialog(this, "Ocurrió un error y no se pudo guardar el libro");
         }
-        
     }//GEN-LAST:event_jButton1MouseClicked
+
+    //BOTON DE LOGIN
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        /*
+        Usuarios:
+        leonardo - 12345
+        diego - 12345
+        gabriel - 12345
+        unitec - 12345
+        progra2 - 12345
+        */
+        if ( ( username.getText().equals("leonardo") || username.getText().equals("diego") || username.getText().equals("gabriel") || username.getText().equals("unitec") ||
+            username.getText().equals("progra2") ) && password.getText().equals("12345")) {
+        //Principal p = new Principal("Ingresaste");
+        dispose();
+        //p.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "El usuario que ha ingresado no existe o su contraseña es incorrecta");
+
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        if (table_info.getSelectedRow() >= 0){
+            int modify = 0;
+            while (modify != 10){
+                try {
+                    modify = Integer.parseInt(JOptionPane.showInputDialog("¿Qué desea modificar?\n1 - Título\n2 - Descripción\n"
+                        + "3 - Puntaje\n4 - Copias Disponibles\n5 - Género\n6 - Valor\n7 - Edición\n8 - Autor\n9 - Año\n10 - Nada"));
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Debe ingresar una de las opciones propuestas");
+                }
+            }
+            DefaultTableModel modelo = (DefaultTableModel) table_info.getModel();
+            switch (modify) {
+                case 1:
+                    String t = JOptionPane.showInputDialog("Nuevo Título");
+                    ((Libro)modelo.getValueAt(table_info.getSelectedRow(), table_info.getSelectedColumn())).setTitle(t);
+                    break;
+                    
+                case 2:
+                    t = JOptionPane.showInputDialog("Nueva Descripción");
+                    ((Libro)modelo.getValueAt(table_info.getSelectedRow(), table_info.getSelectedColumn())).setDescripción(t);
+                    break;
+                    
+                case 3:
+                    try {
+                        int p = Integer.parseInt(JOptionPane.showInputDialog("Nuevo Puntaje"));
+                        while (p > 1 && p > 5) {
+                            JOptionPane.showMessageDialog(this, "El puntaje debe estar entre 1 y 5");
+                            p = Integer.parseInt(JOptionPane.showInputDialog("Nuevo Puntaje"));
+                        }
+                        ((Libro)modelo.getValueAt(table_info.getSelectedRow(), table_info.getSelectedColumn())).setPuntaje(p);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "Debe ingresar valores enteros");
+                    }
+                    break;
+                    
+                case 4:
+                    try {
+                        int p = Integer.parseInt(JOptionPane.showInputDialog("Nuevo Número de Copias"));
+                        ((Libro)modelo.getValueAt(table_info.getSelectedRow(), table_info.getSelectedColumn())).setCopias(p);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "Debe ingresar valores enteros");
+                    }
+                    
+                    break;
+                    
+                case 5:
+                    t = JOptionPane.showInputDialog("Nuevo Género");
+                    ((Libro)modelo.getValueAt(table_info.getSelectedRow(), table_info.getSelectedColumn())).setGenero(t);
+                    break;
+                    
+                case 6:
+                    try {
+                        Double v = Double.parseDouble(JOptionPane.showInputDialog("Nuevo Valor"));
+                        ((Libro)modelo.getValueAt(table_info.getSelectedRow(), table_info.getSelectedColumn())).setValor(v);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "Debe ingresar valores double");
+                    }
+                    
+                    break;
+                    
+                case 7:
+                    t = JOptionPane.showInputDialog("Nueva Edición");
+                    ((Libro)modelo.getValueAt(table_info.getSelectedRow(), table_info.getSelectedColumn())).setEdicion(t);
+                    break;
+                    
+                case 8:
+                    t = JOptionPane.showInputDialog("Nuevo Autor");
+                    ((Libro)modelo.getValueAt(table_info.getSelectedRow(), table_info.getSelectedColumn())).setAutor(t);
+                    break;
+                    
+                case 9:
+                    
+                    break;
+            }
+            table_info.setModel(modelo);
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una casilla");
+        }
+    }//GEN-LAST:event_jButton4MouseClicked
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -513,11 +707,13 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_Libros;
     private javax.swing.JComboBox<String> cb_genre;
-    private javax.swing.JComboBox<String> cb_libros;
     private com.toedter.calendar.JDateChooser dc_born;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -532,6 +728,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -543,14 +740,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jb_createuser;
     private javax.swing.JSpinner js_copias;
     private javax.swing.JSpinner js_puntaje;
     private javax.swing.JPasswordField password;
     private javax.swing.JPasswordField pf_password;
     private javax.swing.JTextArea ta_descripcion;
+    private javax.swing.JTable table_info;
     private javax.swing.JTabbedPane tb_principal;
     private javax.swing.JTextField tf_author;
     private javax.swing.JTextField tf_edicion;

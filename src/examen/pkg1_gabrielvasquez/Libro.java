@@ -101,7 +101,7 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Libro{" + "title=" + title + '}';
+        return title;
     }
     
 }
