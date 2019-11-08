@@ -103,6 +103,7 @@ public class Principal extends javax.swing.JFrame {
         limpiar = new javax.swing.JButton();
         mod = new javax.swing.JButton();
         mybooks = new javax.swing.JButton();
+        eliminate = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -476,26 +477,34 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        eliminate.setText("Eliminar");
+        eliminate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminateMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(jLabel22)
-                        .addGap(18, 18, 18)
-                        .addComponent(cb_Libros, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addComponent(limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(138, 138, 138)
-                        .addComponent(mod, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(167, 167, 167)
-                        .addComponent(mybooks)))
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addGap(146, 146, 146)
+                .addComponent(jLabel22)
+                .addGap(18, 18, 18)
+                .addComponent(cb_Libros, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(101, Short.MAX_VALUE)
+                .addComponent(limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88)
+                .addComponent(mod, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101)
+                .addComponent(eliminate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107)
+                .addComponent(mybooks)
+                .addGap(118, 118, 118))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -510,7 +519,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mod, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mybooks, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mybooks, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eliminate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
 
@@ -801,14 +811,19 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_createuserMouseClicked
 
     private void enterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enterMouseClicked
-        if( (username.getText().equals("leonardo") || username.getText().equals("diego") || username.getText().equals("gabriel") || username.getText().equals("unitec") || username.getText().equals("progra2"))
+        for (Usuario u : usuarios) {
+            if(u.getUser().equals(username.getText()) && u.getPassword().equals(password.getText())){
+                
+            }
+        }
+        if( (username.getText().equals("Leonardo") || username.getText().equals("Diego") || username.getText().equals("Gabriel") || username.getText().equals("UNITEC") || username.getText().equals("progra2"))
                 && password.getText().equals("12345")){
             JOptionPane.showMessageDialog(this, "Ha ingresado exitosamente");
             Principal p = new Principal("hola");
             dispose();
             p.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Usuario no existe, debe crear uno");
+            JOptionPane.showMessageDialog(this, "Usuario no existe");
             username.setText("");
             password.setText("");
         }
@@ -830,6 +845,19 @@ public class Principal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_updateMouseClicked
+
+    private void eliminateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminateMouseClicked
+        if (table_info.getSelectedRow() >= 0) {
+            Libro book = (Libro) cb_Libros.getSelectedItem();
+            DefaultTableModel modelo = (DefaultTableModel) table_info.getModel();
+            modelo.removeRow(table_info.getSelectedRow());
+            table_info.setModel(modelo);
+            libros.remove(book);
+            DefaultComboBoxModel dc = (DefaultComboBoxModel) cb_Libros.getModel();
+            dc.removeElement(book);
+            cb_Libros.setModel(dc);
+        }
+    }//GEN-LAST:event_eliminateMouseClicked
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -868,6 +896,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_favorito;
     private javax.swing.JComboBox<String> cb_genre;
     private com.toedter.calendar.JDateChooser dc_born;
+    private javax.swing.JButton eliminate;
     private javax.swing.JButton enter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
