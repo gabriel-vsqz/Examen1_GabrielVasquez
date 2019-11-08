@@ -21,6 +21,23 @@ public class Principal extends javax.swing.JFrame {
     public Principal (String anything) {
         initComponents();
         
+        username.disable();
+        password.disable();
+        jButton2.disable();
+        
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_Libros.getModel();
+        modelo.addElement(new Libro("The Maze Runner", "Un grupo de jovenes en un laberinto", 5, 3, "Acción", 600, "Primera", "James Dashner", 2012));
+        modelo.addElement(new Libro("The Scorch Trials", "Un grupo de jovenes en un desierto", 5, 2, "Acción", 700, "Primera", "James Dashner", 2014));
+        modelo.addElement(new Libro("The Death Cure", "Un grupo de jovenes en busca de una cura", 3, 1, "Acción", 650, "Segunda", "James Dashner", 2015));
+        modelo.addElement(new Libro("The Eye of Minds", "La realidad no es lo que parece", 5, 3, "Acción", 600, "Primera", "James Dashner", 2016));
+        modelo.addElement(new Libro("The Game of Lives", "La conclusión de la saga The Mortality Doctrine", 5, 2, "Acción", 800, "Tercera", "James Dashner", 2017));
+        setLocationRelativeTo(null);
+    }
+    
+    public Principal (int whatever) {
+        initComponents();
+        
+        
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_Libros.getModel();
         modelo.addElement(new Libro("The Maze Runner", "Un grupo de jovenes en un laberinto", 5, 3, "Acción", 600, "Primera", "James Dashner", 2012));
         modelo.addElement(new Libro("The Scorch Trials", "Un grupo de jovenes en un desierto", 5, 2, "Acción", 700, "Primera", "James Dashner", 2014));
@@ -583,6 +600,15 @@ public class Principal extends javax.swing.JFrame {
             cb_Libros.setModel(dc);
 
             JOptionPane.showMessageDialog(this, "El libro fue agregado exitosamente");
+            
+            tf_titulo.setText("");
+            ta_descripcion.setText("");
+            js_puntaje.setValue(1);
+            js_copias.setValue(0);
+            tf_valor.setText("");
+            tf_edicion.setText("");
+            tf_author.setText("");
+            tf_publish.setText("");
 
         } catch(Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error y no se pudo guardar el libro");
@@ -691,6 +717,12 @@ public class Principal extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(this, "El usuario fue registrado exitosamente");
 
+            tf_username.setText("");
+            pf_password.setText("");
+            dc_born.setDate(null);
+            tf_phone.setText("");
+            tf_email.setText("");
+            
         } catch(Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error y no se pudo guardar el usuario");
         }
@@ -699,9 +731,15 @@ public class Principal extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         if( (username.getText().equals("leonardo") || username.getText().equals("diego") || username.getText().equals("gabriel") || username.getText().equals("unitec") || username.getText().equals("progra2"))
                 && password.getText().equals("12345")){
+            JOptionPane.showMessageDialog(this, "Ha ingresado exitosamente");
             Principal p = new Principal("hola");
             dispose();
             p.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario no existe, debe crear uno");
+            Principal n = new Principal(0);
+            dispose();
+            n.setVisible(true);
         }
     }//GEN-LAST:event_jButton2MouseClicked
 
