@@ -1,6 +1,7 @@
 package examen.pkg1_gabrielvasquez;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -49,9 +50,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         tf_email = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        tf_genre = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jb_createuser = new javax.swing.JButton();
+        cb_favorito = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -162,6 +163,13 @@ public class Principal extends javax.swing.JFrame {
         jLabel7.setText("Libros");
 
         jb_createuser.setText("Crear");
+        jb_createuser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_createuserMouseClicked(evt);
+            }
+        });
+
+        cb_favorito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fantasía", "Romance", "Acción", "Historia" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -192,7 +200,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addGap(18, 18, 18)
@@ -204,7 +212,7 @@ public class Principal extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addGap(18, 18, 18)
-                                        .addComponent(tf_genre, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(cb_favorito, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jb_createuser, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,7 +243,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(tf_phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_genre, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_favorito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
@@ -281,7 +289,7 @@ public class Principal extends javax.swing.JFrame {
 
         cb_genre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fantasía", "Romance", "Acción", "Historia" }));
 
-        jButton1.setText("Agregar Libro");
+        jButton1.setText("Agregar Libro a Biblioteca");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -300,8 +308,8 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cb_genre, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(177, 177, 177))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(108, 108, 108))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -591,7 +599,6 @@ public class Principal extends javax.swing.JFrame {
         //p.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "El usuario que ha ingresado no existe o su contraseña es incorrecta");
-
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -638,7 +645,6 @@ public class Principal extends javax.swing.JFrame {
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(this, "Debe ingresar valores enteros");
                     }
-                    
                     break;
                     
                 case 5:
@@ -667,7 +673,12 @@ public class Principal extends javax.swing.JFrame {
                     break;
                     
                 case 9:
-                    
+                    try {
+                        int p = Integer.parseInt(JOptionPane.showInputDialog("Nuevo Año de Publicación"));
+                        ((Libro)modelo.getValueAt(table_info.getSelectedRow(), table_info.getSelectedColumn())).setAño(p);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, "Debe ingresar valores enteros");
+                    }
                     break;
             }
             table_info.setModel(modelo);
@@ -675,6 +686,28 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una casilla");
         }
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jb_createuserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_createuserMouseClicked
+        String nombre, pass, correo, fave;
+        int tel;
+        Date fecha;
+        try {
+            nombre = tf_username.getText();
+            pass = pf_password.getText();
+            fecha = dc_born.getDate();
+            tel = Integer.parseInt(tf_phone.getText());
+            correo = tf_email.getText();
+            fave = (String)cb_favorito.getSelectedItem();
+            
+            Usuario user = new Usuario(nombre, pass, fecha, tel, correo, fave);
+            usuarios.add(user);
+
+            JOptionPane.showMessageDialog(this, "El usuario fue registrado exitosamente");
+
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error y no se pudo guardar el usuario");
+        }
+    }//GEN-LAST:event_jb_createuserMouseClicked
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -708,6 +741,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_Libros;
+    private javax.swing.JComboBox<String> cb_favorito;
     private javax.swing.JComboBox<String> cb_genre;
     private com.toedter.calendar.JDateChooser dc_born;
     private javax.swing.JButton jButton1;
@@ -753,7 +787,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_author;
     private javax.swing.JTextField tf_edicion;
     private javax.swing.JTextField tf_email;
-    private javax.swing.JTextField tf_genre;
     private javax.swing.JTextField tf_phone;
     private javax.swing.JTextField tf_publish;
     private javax.swing.JTextField tf_titulo;
