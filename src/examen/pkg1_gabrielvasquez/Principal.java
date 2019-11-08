@@ -14,6 +14,12 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
+        tb_principal.disable();
+        setLocationRelativeTo(null);
+    }
+    
+    public Principal (String anything) {
+        initComponents();
         
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_Libros.getModel();
         modelo.addElement(new Libro("The Maze Runner", "Un grupo de jovenes en un laberinto", 5, 3, "Acción", 600, "Primera", "James Dashner", 2012));
@@ -21,7 +27,6 @@ public class Principal extends javax.swing.JFrame {
         modelo.addElement(new Libro("The Death Cure", "Un grupo de jovenes en busca de una cura", 3, 1, "Acción", 650, "Segunda", "James Dashner", 2015));
         modelo.addElement(new Libro("The Eye of Minds", "La realidad no es lo que parece", 5, 3, "Acción", 600, "Primera", "James Dashner", 2016));
         modelo.addElement(new Libro("The Game of Lives", "La conclusión de la saga The Mortality Doctrine", 5, 2, "Acción", 800, "Tercera", "James Dashner", 2017));
-        
         setLocationRelativeTo(null);
     }
     
@@ -30,11 +35,11 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         tb_principal = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -97,52 +102,55 @@ public class Principal extends javax.swing.JFrame {
         jLabel21.setText("Contraseña");
 
         jButton2.setText("Ingresar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(214, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(username)
-                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(205, 205, 205))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(384, 384, 384)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(243, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(76, 76, 76)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(239, 239, 239))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(355, 355, 355)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(417, 417, 417)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(44, 44, 44)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(40, 40, 40))
         );
 
-        tb_principal.addTab("Login", jPanel1);
+        tb_principal.addTab("Login", jPanel4);
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 25)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -484,7 +492,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(40, 40, 40))
         );
 
-        tb_principal.addTab("Ver Libro", jPanel5);
+        tb_principal.addTab("Libros", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -552,7 +560,6 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cb_LibrosItemStateChanged
 
-    //BOTON DE AGREGAR LIBROS
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         String titulo, desc, edicion, genero, autor;
         int puntos, copias, año;
@@ -581,26 +588,6 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ocurrió un error y no se pudo guardar el libro");
         }
     }//GEN-LAST:event_jButton1MouseClicked
-
-    //BOTON DE LOGIN
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        /*
-        Usuarios:
-        leonardo - 12345
-        diego - 12345
-        gabriel - 12345
-        unitec - 12345
-        progra2 - 12345
-        */
-        if ( ( username.getText().equals("leonardo") || username.getText().equals("diego") || username.getText().equals("gabriel") || username.getText().equals("unitec") ||
-            username.getText().equals("progra2") ) && password.getText().equals("12345")) {
-        //Principal p = new Principal("Ingresaste");
-        dispose();
-        //p.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "El usuario que ha ingresado no existe o su contraseña es incorrecta");
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         if (table_info.getSelectedRow() >= 0){
@@ -709,6 +696,15 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_createuserMouseClicked
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        if( (username.getText().equals("leonardo") || username.getText().equals("diego") || username.getText().equals("gabriel") || username.getText().equals("unitec") || username.getText().equals("progra2"))
+                && password.getText().equals("12345")){
+            Principal p = new Principal("hola");
+            dispose();
+            p.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton2MouseClicked
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -731,8 +727,9 @@ public class Principal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             public void run() {
                 new Principal().setVisible(true);
             }
@@ -770,9 +767,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
