@@ -811,11 +811,6 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_createuserMouseClicked
 
     private void enterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enterMouseClicked
-        for (Usuario u : usuarios) {
-            if(u.getUser().equals(username.getText()) && u.getPassword().equals(password.getText())){
-                
-            }
-        }
         if( (username.getText().equals("Leonardo") || username.getText().equals("Diego") || username.getText().equals("Gabriel") || username.getText().equals("UNITEC") || username.getText().equals("progra2"))
                 && password.getText().equals("12345")){
             JOptionPane.showMessageDialog(this, "Ha ingresado exitosamente");
