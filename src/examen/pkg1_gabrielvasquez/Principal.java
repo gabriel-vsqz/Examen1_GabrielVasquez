@@ -7,8 +7,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author Gabriel Vasquez
+ * USERS
+ * Leonardi
+ * Diego
+ * UNITEC
+ * Gabriel
+ * progra2
+ * contra para todos 12345
  */
 public class Principal extends javax.swing.JFrame {
 
